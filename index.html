@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>LUCK TODAY</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -25,16 +25,12 @@ overflow:hidden;
 }
 
 body{
-font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+font-family:'Pretendard',sans-serif;
 background:linear-gradient(180deg,#eef8f0 0%,#dff2e4 100%);
-min-height:100vh;
-overflow-x:hidden;
-color:#2f4634;
 display:flex;
 justify-content:center;
 align-items:center;
--webkit-font-smoothing:antialiased;
--moz-osx-font-smoothing:grayscale;
+color:#2f4634;
 }
 
 .app{
@@ -43,15 +39,15 @@ max-width:430px;
 height:100dvh;
 padding:14px;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 }
 
 .screen{
 display:none;
 width:100%;
 height:100%;
-animation:fadeUp .45s ease;
+animation:fade .4s ease;
 }
 
 .screen.active{
@@ -60,22 +56,23 @@ display:flex;
 
 .card,
 .result-card{
-background:rgba(255,255,255,.94);
-border-radius:36px;
-padding:48px 24px;
-box-shadow:0 10px 30px rgba(84,125,94,.12);
 width:100%;
-min-height:92vh;
+background:rgba(255,255,255,.95);
+border-radius:36px;
+box-shadow:0 10px 30px rgba(84,125,94,.12);
+overflow:hidden;
 display:flex;
 flex-direction:column;
-overflow:hidden;
 }
 
 .card{
+min-height:92vh;
 justify-content:center;
+padding:48px 24px;
 }
 
 .result-card{
+min-height:92vh;
 justify-content:space-between;
 padding:16px 20px 14px;
 }
@@ -92,7 +89,7 @@ animation:float 3s ease-in-out infinite;
 
 .small-clover{
 font-size:42px;
-margin-bottom:8px;
+margin-bottom:6px;
 }
 
 .main-title{
@@ -103,7 +100,7 @@ color:#33553c;
 }
 
 .result-card .main-title{
-font-size:34px !important;
+font-size:32px;
 }
 
 .sub-text{
@@ -128,10 +125,6 @@ cursor:pointer;
 
 .main-btn{
 margin-top:30px;
-}
-
-.save-btn{
-margin-top:0;
 }
 
 .retry-btn{
@@ -161,7 +154,6 @@ align-items:center;
 justify-content:center;
 width:100%;
 height:100%;
-min-height:100%;
 text-align:center;
 }
 
@@ -183,7 +175,7 @@ animation:blink 1s infinite;
 }
 
 .daily{
-margin-top:3px;
+margin-top:2px;
 font-size:12px;
 letter-spacing:1px;
 color:#7b927f;
@@ -193,13 +185,12 @@ color:#7b927f;
 width:150px;
 height:150px;
 border-radius:50%;
-margin:14px auto 10px;
+margin:12px auto 8px;
 display:flex;
 align-items:center;
 justify-content:center;
 position:relative;
 background:conic-gradient(#5fc774 0%,#e4f3e7 0%);
-transition:.3s;
 }
 
 .score-circle::before{
@@ -207,8 +198,8 @@ content:'';
 position:absolute;
 width:122px;
 height:122px;
-border-radius:50%;
 background:white;
+border-radius:50%;
 }
 
 .score-inner{
@@ -230,9 +221,9 @@ color:#2d4e35;
 
 .main-message{
 text-align:center;
-font-size:20px;
+font-size:18px;
 font-weight:800;
-line-height:1.42;
+line-height:1.45;
 min-height:52px;
 color:#314e38;
 margin-top:4px;
@@ -242,7 +233,7 @@ margin-top:4px;
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px;
-margin-top:10px;
+margin-top:8px;
 opacity:0;
 transform:translateY(10px);
 transition:.4s;
@@ -255,9 +246,9 @@ transform:translateY(0);
 
 .info-box{
 background:#eef8f0;
-padding:13px;
+padding:12px;
 border-radius:18px;
-min-height:98px;
+min-height:92px;
 }
 
 .info-title{
@@ -274,8 +265,7 @@ color:#3a5541;
 }
 
 .button-wrap{
-margin-top:12px;
-padding-bottom:2px;
+margin-top:10px;
 }
 
 @keyframes spin{
@@ -296,10 +286,10 @@ transform:translateY(-8px);
 }
 }
 
-@keyframes fadeUp{
+@keyframes fade{
 from{
 opacity:0;
-transform:translateY(16px);
+transform:translateY(10px);
 }
 to{
 opacity:1;
@@ -318,8 +308,6 @@ transform:translateY(0);
 
 <div class="card center">
 
-<div>
-
 <div class="big-clover">🍀</div>
 
 <div class="main-title">
@@ -337,8 +325,6 @@ LUCK TODAY
 <div class="already-text" id="alreadyText" style="display:none;">
 *오늘은 이미 확인하셨네요!<br>
 내일 또 만나요🌈
-</div>
-
 </div>
 
 </div>
@@ -606,19 +592,65 @@ max:69,
 titles:[
 "오늘은 편하게 가는 날 🙂",
 "무난하게 지나가는 하루 🍀",
-"오늘은 잔잔한 흐름 🌿"
+"오늘은 잔잔한 흐름 🌿",
+"오늘은 그냥 평온한 날 😌",
+"오늘은 크게 무리 없는 하루 🙂",
+"오늘은 안정적인 하루 🔒",
+"오늘은 편안하게 보내는 날 ☁️",
+"오늘은 소소하게 괜찮은 날 🌸",
+"오늘은 부담 없이 보내기 좋은 날 😊",
+"오늘은 그냥 무난한 하루 🙆‍♀️",
+"오늘은 쉬어가기 좋은 날 🍃",
+"오늘은 잔잔하게 흘러가는 날 🌙",
+"오늘은 크게 변동 없는 하루 🙂",
+"오늘은 편하게 지나가기 좋은 날 🛋️",
+"오늘은 그냥 괜찮은 하루 🌼"
 ],
 
 subs:[
 "오늘은 그냥 편하게 가는 날 🙂",
 "무난하게 지나가기 좋은 하루 🍀",
-"오늘은 잔잔하게 좋은 날 🌿"
+"오늘은 잔잔하게 좋은 날 🌿",
+"큰 기대 없으면 더 편한 날 😌",
+"오늘은 무리 안 하는 게 포인트 ⚖️",
+"평소처럼만 하면 충분 👌",
+"오늘은 조용히 흘러가는 날 🌙",
+"무난하게 가는 게 정답 ✔️",
+"크게 나쁘지 않은 하루 🙂",
+"오늘은 편하게 보내는 게 답 🛋️",
+"오늘은 안정적으로 가는 날 🔒",
+"특별하진 않지만 괜찮은 날 🌼",
+"오늘은 부담 덜어도 되는 날 🎈",
+"오늘은 그냥 무난하게 ok 🙆‍♀️",
+"오늘은 쉬어가는 흐름 🍃",
+"오늘은 천천히 가도 충분 🐢",
+"오늘은 나를 좀 덜 몰아붙이기 💚",
+"오늘은 편안하게 가는 날 ☁️",
+"오늘은 잔잔하게 보내기 🌙",
+"오늘은 무리 없이 지나가는 날 🚶‍♀️",
+"오늘은 균형 맞추기 좋은 날 ⚖️",
+"오늘은 평온하게 흘러가는 날 🌊",
+"오늘은 부담 없이 보내기 😊",
+"오늘은 소소하게 괜찮은 날 🌸",
+"오늘은 그냥 안정적인 하루 🧘‍♀️"
 ],
 
 bonus:[
 "오늘은 무리하지 말기 🚫",
 "평소대로 가면 충분 🙂",
-"천천히 진행하기 🐢"
+"천천히 진행하기 🐢",
+"오늘은 안정적으로 가기 🔒",
+"작은 것부터 시작 🌱",
+"쉬엄쉬엄 진행 추천 🍃",
+"오늘은 페이스 유지 🏃‍♀️",
+"오늘은 균형 맞추기 ⚖️",
+"오늘은 가볍게 보내기 ☁️",
+"오늘은 나를 좀 챙기기 💚",
+"오늘은 여유 가지기 🌿",
+"오늘은 천천히 호흡하기 🌬️",
+"오늘은 부담 덜어내기 🎈",
+"오늘은 조용히 보내기 🌙",
+"오늘은 편안함 우선 🛋️"
 ]
 
 }
@@ -664,7 +696,7 @@ let current=50;
 
 const interval=setInterval(()=>{
 
-current+=Math.floor(Math.random()*3)+1;
+current+=Math.floor(Math.random()*2)+1;
 
 if(current>=finalScore){
 
@@ -685,7 +717,7 @@ const degree=current*3.6;
 scoreCircle.style.background=
 `conic-gradient(#5fc774 ${degree}deg,#e4f3e7 ${degree}deg)`;
 
-},55);
+},70);
 
 }
 
@@ -708,19 +740,43 @@ scale:2,
 useCORS:true
 });
 
-const image=canvas.toDataURL("image/jpeg",1.0);
+canvas.toBlob(async(blob)=>{
+
+const fileName=`luck-today-${Date.now()}.jpg`;
+
+if(navigator.canShare && navigator.share){
+
+const file=new File(
+[blob],
+fileName,
+{type:"image/jpeg"}
+);
+
+try{
+
+await navigator.share({
+files:[file]
+});
+
+}catch(e){}
+
+}else{
 
 const link=document.createElement("a");
 
-link.href=image;
+link.href=URL.createObjectURL(blob);
 
-link.download=`luck-today-${Date.now()}.jpg`;
+link.download=fileName;
 
 document.body.appendChild(link);
 
 link.click();
 
 document.body.removeChild(link);
+
+}
+
+},"image/jpeg",1);
 
 }
 
