@@ -1,178 +1,242 @@
-# 전체 index.html 코드
-
-```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>LUCK TODAY</title>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap');
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
 }
 
 body{
-background:linear-gradient(to bottom,#dff7df,#f4fff4);
-min-height:100vh;
+font-family:'Pretendard',sans-serif;
+background:linear-gradient(180deg,#eef8f0 0%,#dff2e4 100%);
 display:flex;
 justify-content:center;
 align-items:center;
-padding:20px;
+color:#2f4634;
+}
+
+.app{
+width:100%;
+max-width:430px;
+height:100dvh;
+padding:14px;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 .screen{
 display:none;
 width:100%;
-max-width:430px;
+height:100%;
+animation:fade .4s ease;
 }
 
-.active{
-display:block;
+.screen.active{
+display:flex;
+}
+
+.card,
+.result-card{
+width:100%;
+background:rgba(255,255,255,.95);
+border-radius:36px;
+box-shadow:0 10px 30px rgba(84,125,94,.12);
+overflow:hidden;
+display:flex;
+flex-direction:column;
 }
 
 .card{
-background:#fff;
-border-radius:35px;
-padding:32px 24px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
+min-height:92vh;
+justify-content:center;
+padding:48px 24px;
+}
+
+.result-card{
+min-height:92vh;
+justify-content:space-between;
+padding:16px 20px 14px;
+}
+
+.center{
 text-align:center;
 }
 
-.clover{
-font-size:72px;
-margin-bottom:20px;
+.big-clover{
+font-size:95px;
+margin-bottom:24px;
+animation:float 3s ease-in-out infinite;
 }
 
 .small-clover{
 font-size:42px;
-margin-bottom:10px;
-}
-
-.title{
-font-size:38px;
-font-weight:800;
-color:#41b85f;
-margin-bottom:10px;
-}
-
-.small-title{
-font-size:28px;
-font-weight:800;
-color:#41b85f;
 margin-bottom:6px;
 }
 
-.sub{
-font-size:16px;
-color:#666;
-margin-bottom:28px;
-line-height:1.5;
+.main-title{
+font-size:42px;
+font-weight:800;
+letter-spacing:-1px;
+color:#33553c;
 }
 
-.btn{
-width:100%;
-padding:16px;
-border:none;
-border-radius:18px;
-background:#58c472;
-color:#fff;
+.result-card .main-title{
+font-size:32px;
+}
+
+.sub-text{
+margin-top:14px;
 font-size:17px;
+line-height:1.6;
+color:#68816e;
+}
+
+.main-btn,
+.save-btn{
+width:100%;
+height:58px;
+border:none;
+border-radius:20px;
+background:linear-gradient(135deg,#7ddc8d,#59c56d);
+color:white;
+font-size:16px;
 font-weight:700;
 cursor:pointer;
-margin-top:14px;
 }
 
-.btn:active{
-transform:scale(0.98);
+.main-btn{
+margin-top:30px;
 }
 
-.already{
-margin-top:14px;
-font-size:13px;
-color:#888;
-line-height:1.5;
+.retry-btn{
+width:100%;
+height:52px;
+border-radius:20px;
+margin-top:10px;
+background:transparent;
+border:2px solid #cfe8d4;
+font-size:15px;
+font-weight:700;
+color:#48654f;
+cursor:pointer;
 }
 
-.loading-wrap{
+.already-text{
+margin-top:18px;
+font-size:14px;
+line-height:1.6;
+color:#6f8b74;
+}
+
+.loader-wrap{
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-height:70vh;
+width:100%;
+height:100%;
+text-align:center;
 }
 
 .loader{
-width:90px;
-height:90px;
-border:8px solid #d7f3dd;
-border-top:8px solid #5cc777;
+width:96px;
+height:96px;
+border:7px solid #d9eedf;
+border-top:7px solid #61c975;
 border-radius:50%;
 animation:spin 1s linear infinite;
-margin-bottom:20px;
 }
 
 .loading-text{
-font-size:20px;
+margin-top:26px;
+font-size:19px;
 font-weight:700;
-color:#54bf70;
+color:#4e6d55;
 animation:blink 1s infinite;
 }
 
-@keyframes spin{
-100%{transform:rotate(360deg);}
-}
-
-@keyframes blink{
-0%,100%{opacity:1;}
-50%{opacity:0.4;}
+.daily{
+margin-top:2px;
+font-size:12px;
+letter-spacing:1px;
+color:#7b927f;
 }
 
 .score-circle{
 width:150px;
 height:150px;
 border-radius:50%;
+margin:12px auto 8px;
 display:flex;
 align-items:center;
 justify-content:center;
-margin:18px auto;
-background:conic-gradient(#5fc774 0deg,#e4f3e7 0deg);
 position:relative;
+background:conic-gradient(#5fc774 0%,#e4f3e7 0%);
 }
 
 .score-circle::before{
 content:'';
 position:absolute;
-width:126px;
-height:126px;
-background:#fff;
+width:122px;
+height:122px;
+background:white;
 border-radius:50%;
 }
 
-.score-number{
+.score-inner{
 position:relative;
-font-size:40px;
+z-index:2;
+text-align:center;
+}
+
+.score-label{
+font-size:13px;
+color:#728a76;
+}
+
+.score-number{
+font-size:50px;
 font-weight:800;
-color:#45b962;
+color:#2d4e35;
 }
 
 .main-message{
-font-size:22px;
-font-weight:700;
-line-height:1.4;
-margin:18px 0;
-color:#333;
+text-align:center;
+font-size:18px;
+font-weight:800;
+line-height:1.45;
+min-height:52px;
+color:#314e38;
+margin-top:4px;
 }
 
 .info-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:8px;
 opacity:0;
 transform:translateY(10px);
-transition:0.4s;
-margin-top:14px;
+transition:.4s;
 }
 
 .info-grid.show{
@@ -181,86 +245,186 @@ transform:translateY(0);
 }
 
 .info-box{
-background:#f5fff6;
-padding:14px;
+background:#eef8f0;
+padding:12px;
 border-radius:18px;
-margin-top:10px;
+min-height:92px;
 }
 
 .info-title{
-font-size:13px;
-font-weight:700;
-color:#4fb86b;
+font-size:11px;
+color:#718c77;
 margin-bottom:6px;
 }
 
-.info-text{
-font-size:14px;
+.info-content{
+font-size:12px;
+font-weight:700;
 line-height:1.5;
-color:#444;
+color:#3a5541;
 }
 
-@media(max-width:480px){
-.card{
-padding:28px 18px;
+.button-wrap{
+margin-top:10px;
 }
 
-.clover{
-font-size:64px;
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
 }
 
-.title{
-font-size:34px;
+@keyframes blink{
+50%{
+opacity:.4;
 }
 }
+
+@keyframes float{
+50%{
+transform:translateY(-8px);
+}
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
 </style>
 </head>
+
 <body>
 
-<div id="homeScreen" class="screen active">
-<div class="card">
-<div class="clover">🍀</div>
-<div class="title">LUCK TODAY</div>
-<div class="sub">당신의 오늘 행운을 확인해보세요✨</div>
-<button class="btn" onclick="startFortune()">행운 확인하기</button>
-<div id="alreadyText" class="already"></div>
-</div>
+<div class="app">
+
+<section class="screen active" id="homeScreen">
+
+<div class="card center">
+
+<div class="big-clover">🍀</div>
+
+<div class="main-title">
+LUCK TODAY
 </div>
 
-<div id="loadingScreen" class="screen">
-<div class="loading-wrap">
+<div class="sub-text">
+당신의 오늘 행운을 확인해보세요✨
+</div>
+
+<button class="main-btn" onclick="startFortune()">
+행운 확인하기
+</button>
+
+<div class="already-text" id="alreadyText" style="display:none;">
+*오늘은 이미 확인하셨네요!<br>
+내일 또 만나요🌈
+</div>
+
+</div>
+
+</section>
+
+<section class="screen" id="loadingScreen">
+
+<div class="loader-wrap">
+
 <div class="loader"></div>
-<div class="loading-text">행운을 불러오는 중...</div>
-</div>
+
+<div class="loading-text">
+행운을 불러오는 중...
 </div>
 
-<div id="resultScreen" class="screen">
-<div class="card" id="captureArea">
+</div>
+
+</section>
+
+<section class="screen" id="resultScreen">
+
+<div class="result-card">
+
+<div id="captureArea">
+
+<div class="center">
+
 <div class="small-clover">🍀</div>
-<div class="small-title">LUCK TODAY</div>
-<div class="sub" style="margin-bottom:10px;">DAILY FORTUNE</div>
+
+<div class="main-title">
+LUCK TODAY
+</div>
+
+<div class="daily">
+DAILY FORTUNE
+</div>
+
+</div>
 
 <div class="score-circle" id="scoreCircle">
-<div class="score-number" id="scoreNumber">50</div>
+
+<div class="score-inner">
+
+<div class="score-label">
+행운 지수
+</div>
+
+<div class="score-number" id="scoreNumber">
+50
+</div>
+
+</div>
+
 </div>
 
 <div class="main-message" id="mainMessage"></div>
 
 <div class="info-grid" id="infoGrid">
+
 <div class="info-box">
-<div class="info-title">한줄 메시지</div>
-<div class="info-text" id="subMessage"></div>
+
+<div class="info-title">
+💬 한줄 메시지
+</div>
+
+<div class="info-content" id="subMessage"></div>
+
 </div>
 
 <div class="info-box">
-<div class="info-title">보너스 문구</div>
-<div class="info-text" id="bonusMessage"></div>
-</div>
+
+<div class="info-title">
+🎁 보너스 문구
 </div>
 
-<button class="btn" onclick="saveImage()">결과 이미지 저장하기</button>
-<button class="btn" onclick="retryFortune()">다시 뽑기</button>
+<div class="info-content" id="bonusMessage"></div>
+
 </div>
+
+</div>
+
+</div>
+
+<div class="button-wrap">
+
+<button class="save-btn" onclick="saveImage()">
+📥 결과 이미지 저장하기
+</button>
+
+<button class="retry-btn" onclick="goHome()">
+🔄 다시 뽑기
+</button>
+
+</div>
+
+</div>
+
+</section>
+
 </div>
 
 <script>
@@ -278,6 +442,8 @@ const bonusMessage=document.getElementById('bonusMessage');
 
 const infoGrid=document.getElementById('infoGrid');
 const alreadyText=document.getElementById('alreadyText');
+
+const fortuneData=[
 
 {
 min:90,
@@ -428,7 +594,17 @@ titles:[
 "무난하게 지나가는 하루 🍀",
 "오늘은 잔잔한 흐름 🌿",
 "오늘은 그냥 평온한 날 😌",
-"오늘은 크게 무리 없는 하루 🙂"
+"오늘은 크게 무리 없는 하루 🙂",
+"오늘은 안정적인 하루 🔒",
+"오늘은 편안하게 보내는 날 ☁️",
+"오늘은 소소하게 괜찮은 날 🌸",
+"오늘은 부담 없이 보내기 좋은 날 😊",
+"오늘은 그냥 무난한 하루 🙆‍♀️",
+"오늘은 쉬어가기 좋은 날 🍃",
+"오늘은 잔잔하게 흘러가는 날 🌙",
+"오늘은 크게 변동 없는 하루 🙂",
+"오늘은 편하게 지나가기 좋은 날 🛋️",
+"오늘은 그냥 괜찮은 하루 🌼"
 ],
 
 subs:[
@@ -436,7 +612,27 @@ subs:[
 "무난하게 지나가기 좋은 하루 🍀",
 "오늘은 잔잔하게 좋은 날 🌿",
 "큰 기대 없으면 더 편한 날 😌",
-"오늘은 무리 안 하는 게 포인트 ⚖️"
+"오늘은 무리 안 하는 게 포인트 ⚖️",
+"평소처럼만 하면 충분 👌",
+"오늘은 조용히 흘러가는 날 🌙",
+"무난하게 가는 게 정답 ✔️",
+"크게 나쁘지 않은 하루 🙂",
+"오늘은 편하게 보내는 게 답 🛋️",
+"오늘은 안정적으로 가는 날 🔒",
+"특별하진 않지만 괜찮은 날 🌼",
+"오늘은 부담 덜어도 되는 날 🎈",
+"오늘은 그냥 무난하게 ok 🙆‍♀️",
+"오늘은 쉬어가는 흐름 🍃",
+"오늘은 천천히 가도 충분 🐢",
+"오늘은 나를 좀 덜 몰아붙이기 💚",
+"오늘은 편안하게 가는 날 ☁️",
+"오늘은 잔잔하게 보내기 🌙",
+"오늘은 무리 없이 지나가는 날 🚶‍♀️",
+"오늘은 균형 맞추기 좋은 날 ⚖️",
+"오늘은 평온하게 흘러가는 날 🌊",
+"오늘은 부담 없이 보내기 😊",
+"오늘은 소소하게 괜찮은 날 🌸",
+"오늘은 그냥 안정적인 하루 🧘‍♀️"
 ],
 
 bonus:[
@@ -444,7 +640,17 @@ bonus:[
 "평소대로 가면 충분 🙂",
 "천천히 진행하기 🐢",
 "오늘은 안정적으로 가기 🔒",
-"작은 것부터 시작 🌱"
+"작은 것부터 시작 🌱",
+"쉬엄쉬엄 진행 추천 🍃",
+"오늘은 페이스 유지 🏃‍♀️",
+"오늘은 균형 맞추기 ⚖️",
+"오늘은 가볍게 보내기 ☁️",
+"오늘은 나를 좀 챙기기 💚",
+"오늘은 여유 가지기 🌿",
+"오늘은 천천히 호흡하기 🌬️",
+"오늘은 부담 덜어내기 🎈",
+"오늘은 조용히 보내기 🌙",
+"오늘은 편안함 우선 🛋️"
 ]
 
 }
@@ -457,9 +663,12 @@ homeScreen.classList.remove('active');
 loadingScreen.classList.add('active');
 
 setTimeout(()=>{
+
 loadingScreen.classList.remove('active');
 resultScreen.classList.add('active');
+
 generateFortune();
+
 },2200);
 
 }
@@ -508,7 +717,16 @@ const degree=current*3.6;
 scoreCircle.style.background=
 `conic-gradient(#5fc774 ${degree}deg,#e4f3e7 ${degree}deg)`;
 
-},52);
+},70);
+
+}
+
+function goHome(){
+
+resultScreen.classList.remove('active');
+homeScreen.classList.add('active');
+
+alreadyText.style.display='block';
 
 }
 
@@ -517,18 +735,38 @@ async function saveImage(){
 const target=document.querySelector("#captureArea");
 
 const canvas=await html2canvas(target,{
-backgroundColor:"#ffffff",
-scale:3,
+backgroundColor:null,
+scale:2,
 useCORS:true
 });
 
-const image=canvas.toDataURL("image/jpeg",1.0);
+canvas.toBlob(async(blob)=>{
+
+const fileName=`luck-today-${Date.now()}.jpg`;
+
+if(navigator.canShare && navigator.share){
+
+const file=new File(
+[blob],
+fileName,
+{type:"image/jpeg"}
+);
+
+try{
+
+await navigator.share({
+files:[file]
+});
+
+}catch(e){}
+
+}else{
 
 const link=document.createElement("a");
 
-link.href=image;
+link.href=URL.createObjectURL(blob);
 
-link.download=`luck-today-${Date.now()}.jpg`;
+link.download=fileName;
 
 document.body.appendChild(link);
 
@@ -538,12 +776,7 @@ document.body.removeChild(link);
 
 }
 
-function retryFortune(){
-
-resultScreen.classList.remove('active');
-homeScreen.classList.add('active');
-
-alreadyText.innerHTML='*오늘은 이미 확인하셨네요! 내일 또 만나요🌈';
+},"image/jpeg",1);
 
 }
 
@@ -551,4 +784,3 @@ alreadyText.innerHTML='*오늘은 이미 확인하셨네요! 내일 또 만나�
 
 </body>
 </html>
-```
