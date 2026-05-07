@@ -730,43 +730,30 @@ alreadyText.style.display='block';
 
 }
 
+<script>
+
 async function saveImage(){
 
 const target=document.querySelector("#captureArea");
 
 const canvas=await html2canvas(target,{
-backgroundColor:null,
-scale:2,
+backgroundColor:"#ffffff",
+scale:3,
 useCORS:true
 });
 
-canvas.toBlob(async(blob)=>{
+/* JPG 변환 */
+const image=canvas.toDataURL("image/jpeg",1.0);
 
-const fileName=`luck-today-${Date.now()}.jpg`;
-
-if(navigator.canShare && navigator.share){
-
-const file=new File(
-[blob],
-fileName,
-{type:"image/jpeg"}
-);
-
-try{
-
-await navigator.share({
-files:[file]
-});
-
-}catch(e){}
-
-}else{
-
+/* 자동 저장 시도 */
 const link=document.createElement("a");
 
-link.href=URL.createObjectURL(blob);
+link.href=image;
 
-link.download=fileName;
+link.setAttribute(
+"download",
+`luck-today-${Date.now()}.jpg`
+);
 
 document.body.appendChild(link);
 
@@ -774,13 +761,13 @@ link.click();
 
 document.body.removeChild(link);
 
-}
+/* 모바일 일부 브라우저 대응 */
+setTimeout(()=>{
 
-},"image/jpeg",1);
+window.location.href=image;
+
+},300);
 
 }
 
 </script>
-
-</body>
-</html>
