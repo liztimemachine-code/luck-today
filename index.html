@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>LUCK TODAY</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap');
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
 }
 
 body{
-font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 background:linear-gradient(180deg,#eef8f0 0%,#dff2e4 100%);
 min-height:100vh;
 overflow-x:hidden;
 color:#2f4634;
+display:flex;
+justify-content:center;
+align-items:center;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
 }
 
 .app{
 width:100%;
 max-width:430px;
-margin:0 auto;
-min-height:100vh;
-padding:18px;
+height:100dvh;
+padding:14px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -37,27 +50,34 @@ justify-content:center;
 .screen{
 display:none;
 width:100%;
+height:100%;
 animation:fadeUp .45s ease;
 }
 
 .screen.active{
-display:block;
+display:flex;
 }
 
-.card,.result-card{
+.card,
+.result-card{
 background:rgba(255,255,255,.94);
 border-radius:36px;
 padding:48px 24px;
 box-shadow:0 10px 30px rgba(84,125,94,.12);
 width:100%;
-min-height:88vh;
+min-height:92vh;
 display:flex;
 flex-direction:column;
+overflow:hidden;
+}
+
+.card{
 justify-content:center;
 }
 
 .result-card{
-min-height:88vh;
+justify-content:space-between;
+padding:20px 20px 16px;
 }
 
 .center{
@@ -89,7 +109,8 @@ line-height:1.6;
 color:#68816e;
 }
 
-.main-btn,.save-btn{
+.main-btn,
+.save-btn{
 width:100%;
 height:60px;
 border:none;
@@ -155,10 +176,10 @@ color:#7b927f;
 }
 
 .score-circle{
-width:185px;
-height:185px;
+width:155px;
+height:155px;
 border-radius:50%;
-margin:28px auto 14px;
+margin:18px auto 14px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -170,8 +191,8 @@ transition:.3s;
 .score-circle::before{
 content:'';
 position:absolute;
-width:142px;
-height:142px;
+width:118px;
+height:118px;
 border-radius:50%;
 background:white;
 }
@@ -195,10 +216,10 @@ color:#2d4e35;
 
 .main-message{
 text-align:center;
-font-size:22px;
+font-size:20px;
 font-weight:800;
 line-height:1.45;
-min-height:70px;
+min-height:62px;
 color:#314e38;
 margin-top:8px;
 }
@@ -207,7 +228,7 @@ margin-top:8px;
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:12px;
-margin-top:20px;
+margin-top:18px;
 opacity:0;
 transform:translateY(10px);
 transition:.4s;
@@ -220,9 +241,9 @@ transform:translateY(0);
 
 .info-box{
 background:#eef8f0;
-padding:16px;
+padding:14px;
 border-radius:20px;
-min-height:125px;
+min-height:105px;
 }
 
 .info-title{
@@ -239,7 +260,7 @@ color:#3a5541;
 }
 
 .button-wrap{
-margin-top:24px;
+margin-top:18px;
 }
 
 @keyframes spin{
@@ -278,21 +299,22 @@ font-size:35px;
 }
 
 .main-message{
-font-size:20px;
+font-size:18px;
 }
 
 .score-circle{
-width:165px;
-height:165px;
+width:145px;
+height:145px;
 }
 
 .score-circle::before{
-width:126px;
-height:126px;
+width:108px;
+height:108px;
 }
 
-.card,.result-card{
-padding:42px 20px;
+.card,
+.result-card{
+padding:40px 18px;
 }
 
 }
@@ -458,20 +480,63 @@ titles:[
 "운 제대로 터진 날 💥",
 "오늘은 그냥 되는 날 🍀",
 "운이 확실히 내 편인 하루 💚",
-"오늘은 결과까지 이어지는 날 ✨"
+"오늘은 결과까지 이어지는 날 ✨",
+"오늘은 기회가 몰리는 날 🎯",
+"운이 강하게 들어온 상태 ⚡",
+"오늘은 제대로 타이밍 온 날 ⏰",
+"오늘은 확실히 좋은 흐름 🔥",
+"운이 밀어주는 하루 🚀",
+"오늘은 그냥 믿고 가도 되는 날 😎",
+"오늘은 성과 기대해도 되는 날 💯",
+"오늘은 운이 확실히 붙은 날 🍀",
+"오늘은 기회 잡기 좋은 날 🎁",
+"오늘은 상승 흐름 제대로 탄 날 📈"
 ],
 
 subs:[
 "지금이 타이밍임, 바로 가도 됨 🔥",
 "고민할 필요 없음, 그냥 해 💥",
 "이건 밀어붙이면 결과 나온다 ⚡",
-"오늘은 실행이 답 🔥"
+"지금 선택 거의 정답 수준 🎯",
+"오늘은 감 믿고 가면 맞음 🔮",
+"타이밍 제대로 왔음, 놓치지 말기 ⏰",
+"오늘은 시도할수록 이득 📈",
+"이건 안 하면 아까운 날 💎",
+"오늘은 운이 확실히 밀어줌 💚",
+"지금 하는 거 그대로 가면 됨 🚀",
+"미루던 거 오늘 바로 처리 🧾",
+"지금 시작하면 결과 나옴 💡",
+"고민 끝, 실행 시작 💥",
+"오늘은 하나 질러도 됨 😎",
+"생각만 하지 말고 움직이기 🏃‍♀️",
+"오늘은 도전해볼 타이밍 🎯",
+"망설일 이유 없음 🚫",
+"오늘은 실행이 답 🔥",
+"이건 느낌 아니고 확신임 💯",
+"오늘은 운빨 풀가동 상태 ⚙️",
+"오늘은 기회가 눈앞에 있음 👀",
+"지금 선택, 그대로 밀어도 됨 🟢",
+"오늘은 흐름 완전히 내 쪽 🌊",
+"결과까지 이어지는 날 🔗",
+"오늘은 타이밍이 다 해주는 날 ⏳"
 ],
 
 bonus:[
 "지금 바로 하나 실행해보기 🚀",
+"미루던 거 오늘 처리 각 📌",
 "오늘은 도전해도 손해 없음 💥",
-"오늘은 기회 잡아보기 🎯"
+"하나 질러도 되는 날 😎",
+"지금 시작해도 늦지 않음 ⏰",
+"오늘은 기회 잡아보기 🎯",
+"하고 싶던 거 바로 실행 🏃‍♀️",
+"오늘은 움직일수록 이득 📈",
+"지금 선택 그대로 밀고 가기 🟢",
+"오늘은 실행이 답 🔥",
+"오늘은 결정 빠르게 해보기 ⚡",
+"오늘은 하나 끝내기 목표 🎯",
+"오늘은 바로 행동하는 날 💥",
+"오늘은 시작이 반 이상 🚀",
+"오늘은 기회 놓치지 않기 👀"
 ]
 
 },
@@ -483,19 +548,65 @@ max:89,
 titles:[
 "오늘은 꽤 괜찮은 하루 😆",
 "운이 은근 따라주는 날 🍀",
-"오늘은 기분 좋은 흐름 ✨"
+"오늘은 기분 좋은 흐름 ✨",
+"오늘은 나쁘지 않은 운 😊",
+"오늘은 기대 살짝 해도 됨 😉",
+"운이 살짝 얹혀 있는 날 🍀",
+"오늘은 무난하게 좋은 날 🙂",
+"오늘은 흐름 괜찮은 편 🌊",
+"오늘은 가볍게 잘 풀리는 날 👍",
+"오늘은 소소하게 운 좋은 날 🌿",
+"오늘은 기분 좋은 일 생길 수도 💛",
+"오늘은 안정적으로 괜찮은 날 😌",
+"오늘은 적당히 운 따라오는 날 🍀",
+"오늘은 부담 없이 괜찮은 하루 🌈",
+"오늘은 자연스럽게 풀리는 날 🍃"
 ],
 
 subs:[
 "오늘은 꽤 괜찮은 흐름 😆🍀",
 "운이 슬쩍 도와주는 느낌 ✨",
-"생각보다 잘 풀리는 날 👍"
+"기대 조금 해봐도 되는 날 😉",
+"오늘은 흐름 타기 좋은 날 🌊",
+"생각보다 잘 풀리는 날 👍",
+"오늘은 운이 은근 따라옴 🍀",
+"무난하게 잘 가는 날 🙂",
+"괜히 기분 좋은 날 💛",
+"오늘은 타이밍 나쁘지 않음 ⏳",
+"가볍게 가도 괜찮은 결과 😊",
+"오늘은 은근히 잘 풀리는 날 🌿",
+"괜히 결과 괜찮게 나오는 날 🎁",
+"오늘은 적당히 밀어도 되는 날 💪",
+"운이 은근 붙어있는 상태 🍀",
+"부담 없이 가도 괜찮은 날 😌",
+"오늘은 자연스럽게 잘 풀림 🌈",
+"오늘은 선택이 나쁘지 않은 날 ✔️",
+"오늘은 적당히 운 좋은 날 🍀",
+"괜히 기대해도 되는 하루 😆",
+"오늘은 흐름이 괜찮은 편 📊",
+"오늘은 무리 없이도 잘 되는 날 🙌",
+"작은 기회 하나 잡히는 날 🎯",
+"오늘은 운이 살짝 얹혀 있음 🍀",
+"오늘은 가볍게 시작해도 충분 🌱",
+"오늘은 적당히 잘 맞아떨어짐 🔄"
 ],
 
 bonus:[
 "가볍게 하나 도전해보기 😉",
 "오늘은 소소하게 즐기기 🍀",
-"기분 좋은 거 하나 해보기 😊"
+"커피 한잔 여유 추천 ☕",
+"기분 좋은 거 하나 해보기 😊",
+"오늘은 나한테 보상 하나 🎁",
+"오늘은 가볍게 기분 챙기기 💛",
+"소소한 즐거움 하나 추가 🌸",
+"오늘은 여유 있게 보내기 🕊️",
+"작은 행복 하나 챙기기 🍰",
+"오늘은 나한테 친절하게 💚",
+"오늘은 기분 따라 움직이기 🎶",
+"오늘은 편하게 하나 해보기 🌿",
+"오늘은 나한테 작은 선물 🎁",
+"오늘은 즐거운 거 하나 추가 🎉",
+"오늘은 여유 한 스푼 ☕"
 ]
 
 },
@@ -507,19 +618,65 @@ max:69,
 titles:[
 "오늘은 편하게 가는 날 🙂",
 "무난하게 지나가는 하루 🍀",
-"오늘은 잔잔한 흐름 🌿"
+"오늘은 잔잔한 흐름 🌿",
+"오늘은 그냥 평온한 날 😌",
+"오늘은 크게 무리 없는 하루 🙂",
+"오늘은 안정적인 하루 🔒",
+"오늘은 편안하게 보내는 날 ☁️",
+"오늘은 소소하게 괜찮은 날 🌸",
+"오늘은 부담 없이 보내기 좋은 날 😊",
+"오늘은 그냥 무난한 하루 🙆‍♀️",
+"오늘은 쉬어가기 좋은 날 🍃",
+"오늘은 잔잔하게 흘러가는 날 🌙",
+"오늘은 크게 변동 없는 하루 🙂",
+"오늘은 편하게 지나가기 좋은 날 🛋️",
+"오늘은 그냥 괜찮은 하루 🌼"
 ],
 
 subs:[
 "오늘은 그냥 편하게 가는 날 🙂",
 "무난하게 지나가기 좋은 하루 🍀",
-"오늘은 잔잔하게 좋은 날 🌿"
+"오늘은 잔잔하게 좋은 날 🌿",
+"큰 기대 없으면 더 편한 날 😌",
+"오늘은 무리 안 하는 게 포인트 ⚖️",
+"평소처럼만 하면 충분 👌",
+"오늘은 조용히 흘러가는 날 🌙",
+"무난하게 가는 게 정답 ✔️",
+"크게 나쁘지 않은 하루 🙂",
+"오늘은 편하게 보내는 게 답 🛋️",
+"오늘은 안정적으로 가는 날 🔒",
+"특별하진 않지만 괜찮은 날 🌼",
+"오늘은 부담 덜어도 되는 날 🎈",
+"오늘은 그냥 무난하게 ok 🙆‍♀️",
+"오늘은 쉬어가는 흐름 🍃",
+"오늘은 천천히 가도 충분 🐢",
+"오늘은 나를 좀 덜 몰아붙이기 💚",
+"오늘은 편안하게 가는 날 ☁️",
+"오늘은 잔잔하게 보내기 🌙",
+"오늘은 무리 없이 지나가는 날 🚶‍♀️",
+"오늘은 균형 맞추기 좋은 날 ⚖️",
+"오늘은 평온하게 흘러가는 날 🌊",
+"오늘은 부담 없이 보내기 😊",
+"오늘은 소소하게 괜찮은 날 🌸",
+"오늘은 그냥 안정적인 하루 🧘‍♀️"
 ],
 
 bonus:[
 "오늘은 무리하지 말기 🚫",
+"평소대로 가면 충분 🙂",
 "천천히 진행하기 🐢",
-"오늘은 안정적으로 가기 🔒"
+"오늘은 안정적으로 가기 🔒",
+"작은 것부터 시작 🌱",
+"쉬엄쉬엄 진행 추천 🍃",
+"오늘은 페이스 유지 🏃‍♀️",
+"오늘은 균형 맞추기 ⚖️",
+"오늘은 가볍게 보내기 ☁️",
+"오늘은 나를 좀 챙기기 💚",
+"오늘은 여유 가지기 🌿",
+"오늘은 천천히 호흡하기 🌬️",
+"오늘은 부담 덜어내기 🎈",
+"오늘은 조용히 보내기 🌙",
+"오늘은 편안함 우선 🛋️"
 ]
 
 }
@@ -599,19 +756,29 @@ alreadyText.style.display='block';
 
 }
 
-function saveImage(){
+async function saveImage(){
 
-html2canvas(document.querySelector("#captureArea")).then(canvas=>{
+const target=document.querySelector("#captureArea");
+
+const canvas=await html2canvas(target,{
+backgroundColor:null,
+scale:2,
+useCORS:true
+});
+
+const image=canvas.toDataURL("image/jpeg",1.0);
 
 const link=document.createElement("a");
 
-link.download="luck-today.jpg";
+link.href=image;
 
-link.href=canvas.toDataURL("image/jpeg",1.0);
+link.download=`luck-today-${Date.now()}.jpg`;
+
+document.body.appendChild(link);
 
 link.click();
 
-});
+document.body.removeChild(link);
 
 }
 
